@@ -37,13 +37,25 @@ class DBOption {
             ->first();
 
         if($option){
+
+            $data = [];
+            
+            // Value
+            $data['value'] = $value;
+
+            // Type
+            if(in_array($type, ['string','int','float','json'], true)){
+                $data['type'] = $type;
+            }
+            
+            // Description
+            if(!is_null($description)){
+                $data['description'] = $description;
+            }
+
             return DB::table('options')
                 ->where('name', $name)
-                ->update([
-                    'type' => $type,
-                    'value' => $value,
-                    'description' => $description
-                ]);
+                ->update($data);
         }
 
         return DB::table('options')->insert([
