@@ -6,25 +6,45 @@ use Illuminate\Support\Facades\DB;
 
 class DBOption {
 
-    public function get($name)
-    {
-        $option = DB::table('options')
-            ->where('name', $name)
-            ->first();
+    private $options = [];
 
-        if($option){
+    public function all()
+    {
+        if(collect($this->options)->isNotEmpty()){
+            return $this->options;
+        }
+
+        $options = DB::table('options')->select(['name', 'type','value'])->get();
+
+        if($options->isEmpty()){
+            return $this->options;
+        }
+
+        foreach ($options as $option){
 
             if ($option->type === 'int'){
-                return (int)$option->value;
+                $this->options[$option->name] = (int)$option->value;
 
             }elseif ($option->type === 'float'){
-                return (float)$option->value;
+                $this->options[$option->name] = (float)$option->value;
 
             }elseif ($option->type === 'json'){
-                return json_decode($option->value);
+                $this->options[$option->name] = json_decode($option->value);
+            }else{
+                $this->options[$option->name] = $option->value;
             }
 
-            return (string)$option->value;
+        }
+
+        return $this->options;
+    }
+
+    public function get($name)
+    {
+        $this->all();
+
+        if(isset($this->options[$name])){
+            return $this->options[$name];
         }
 
         return null;
