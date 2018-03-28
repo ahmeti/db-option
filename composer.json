@@ -1,0 +1,40 @@
+{
+    "name": "ahmeti/db-option",
+    "description": "Laravel Database Option",
+    "homepage": "https://github.com/ahmeti/db-option",
+    "keywords": [
+        "laravel",
+        "database",
+        "options"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmet Imamoglu",
+            "email": "ahmet363@gmail.com",
+            "role": "Developer",
+            "homepage": "https://ahmetimamoglu.com.tr"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {},
+    "config": {
+        "optimize-autoloader": true,
+        "minimum-stability": "dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Ahmeti\\DBOption": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "aliases": {},
+            "providers": [
+                "Ahmeti\\DBOption\\Providers\\DBOptionServiceProvider"
+            ]
+        }
+    }
+}
