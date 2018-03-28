@@ -12,7 +12,7 @@ CREATE TABLE `options` (
   `name` varchar(191) NOT NULL DEFAULT '',
   `type` enum('string','int','float','json') NOT NULL DEFAULT 'string',
   `value` text NOT NULL,
-  `description` varchar(255) NOT NULL DEFAULT '',
+  `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 ```
