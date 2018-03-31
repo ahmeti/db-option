@@ -53,15 +53,15 @@ class TestController extends Controller
     
     public function sample_3()
     {
-        DBOption::set('site_price', 150.000, 'float');
+        DBOption::set('site_price', 150.001, 'float');
         
-        return DBOption::get('site_price'); # (float) 150.000
+        return DBOption::get('site_price'); # (float) 150.001
     }
     
     
     public function sample_4()
     {
-        $jsonString='{ "url":"ahmetimamoglu.com.tr", "site_id": 10, "site_price": 150.000 }';
+        $jsonString='{ "url":"ahmetimamoglu.com.tr", "site_id": 10, "site_price": 150.001 }';
     
         DBOption::set('site_options', $jsonString, 'json');
         
@@ -69,6 +69,6 @@ class TestController extends Controller
         
         return $site_options->url; # (string) 'ahmetimamoglu.com.tr'
         return $site_options->site_id; # (int) 10
-        return $site_options->site_price; # (float) 150.000
+        return $site_options->site_price; # (float) 150.001
     }    
 ```
